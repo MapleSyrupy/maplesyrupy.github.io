@@ -1,17 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+html{
+  overflow-x:hidden;
+}
 
 
 body{
   margin:0;
   padding:0;
-  overflow-x:hidden;
   background: none;
   position: relative;
 }
 
-body::before {
+/* body::before {
   content: "";
   position: fixed;
   top: 0;
@@ -25,8 +27,13 @@ body::before {
   background-attachment: fixed;
   background-size: auto;
   filter: blur(16px) brightness(0.8);
-}
+} */
 
+#navbar{
+
+  backdrop-filter: blur(10px);
+  box-shadow:0 1px 12px rgba(0,0,0,0.25);
+}
 #section1{
   border-radius:8px;
   backdrop-filter: blur(10px);

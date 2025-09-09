@@ -1,4 +1,4 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 // --- DATA (icons removed) ---
@@ -89,111 +89,110 @@ const pastEvents = [
 
 function MainPage({ setPages }: { setPages: (page: string) => void }) {
   const scrollIntoViewRef = useRef<HTMLDivElement>(null);
-  function scrollIntoView() {
-    scrollIntoViewRef.current?.scrollIntoView({ behavior: "smooth" });
-  }
+
   return (
     <>
-      <div
-        className="flex w-screen h-screen justify-center content-center"
-        style={{ maxWidth: "100%" }}
-        id="mainContainer"
-      >
-        <div className="grid place-items-center h-full/2 flex content-center">
-          <p className="font-mono text-7xl text-center">
-            ThraiveAI, a{" "}
-            <span className="text-sky-500 font-bold ">student</span>{" "}
+      {/* Hero Section */}
+      <div className="min-h-screen w-screen px-4 flex flex-col items-center justify-center overflow-hidden bg-base-200">
+        <div className="w-full text-center space-y-6 md:space-y-12">
+          <p className="text-xl font-mono md:text-8xl lg:text-7xl">
+            ThraiveAI, a <span className="text-sky-500 font-bold">student</span>{" "}
             volunteer-run organization with{" "}
             <span className="text-orange-400 font-bold">AI</span> as a focus.
           </p>
           <button
-            className="btn btn-primary m-10"
-            onClick={() => scrollIntoView()}
+            className="w-1/2 px-4 py-3 bg-primary text-white rounded-full md:h-28 md:text-4xl btn border-0 2xl:w-1/4 transition delay-150 duration-250 ease-in-out hover hover:scale-110 hover:bg-red-500"
+            onClick={() =>
+              scrollIntoViewRef.current?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             Learn MORE
           </button>
         </div>
       </div>
-      <section ref={scrollIntoViewRef}>
-        <div className=" grid  place-items-center flex w-screen content-center">
-          <h1 className="text-5xl font-bold text-center">About US</h1>
-          <p className="text-center text-2xl font-bold w-1/2 ">
-            We are a nationwide community of 90+ passionate{" "}
+
+      {/* About Section */}
+      <section ref={scrollIntoViewRef} className="px-4 py-12">
+        <div className="w-full max-w-lg mx-auto text-center space-y-6">
+          <h1 className="text-3xl font-bold md:text-7xl lg:text-8xl">
+            About US
+          </h1>
+          <p className="text-lg font-bold md:text-2xl lg:text-3xl">
+            We are a nationwide community of{" "}
             <span className="text-orange-500">students</span>, united by a
             curiosity for AI and a drive to make a difference.
           </p>
         </div>
       </section>
-      <section
-        className="w-screen flex justify-center p-5"
-        style={{ maxWidth: "100%" }}
-      >
-        <div
-          className="flex h-120 flex justify-center content-center"
-          style={{ width: "75vw" }}
-        >
-          <div className="w-full h-full flex flex-col">
-            <div
-              className="card  grid h-50 grow place-items-center"
-              id="section1"
-            >
-              <h1 className="font-bold text-orange-400 text-9xl text-left">
-                OUR MISSION
-              </h1>
-              <p className="text-center text-2xl text-center">
-                Our mission is to democratize AI education and application. We
-                aim to conduct insightful webinars, build a collaborative
-                student community, promote AI for nonprofit impact, and organize
-                innovative hackathons. We're creating a launchpad for the next
-                generation of AI leaders and problem-solvers.
-              </p>
-            </div>
+
+      {/* Mission & Vision Section */}
+      <section className="px-4 py-12">
+        <div className="flex flex-col gap-8 max-w-7xl mx-auto md:flex-row md:gap-12">
+          <div className="flex-1 bg-zinc-800/50 backdrop-blur-sm rounded-xl p-8 space-y-4 text-center border border-zinc-700 transition delay-150 duration-250 ease-in-out hover hover:scale-110 hover:border-orange-400">
+            <h2 className="text-3xl font-bold text-orange-400 md:text-6xl lg:text-7xl">
+              OUR MISSION
+            </h2>
+            <p className="text-base md:text-2xl lg:text-3xl ">
+              Our mission is to democratize AI education and application. We aim
+              to conduct insightful webinars, build a collaborative student
+              community, promote AI for nonprofit impact, and organize
+              innovative hackathons. We're creating a launchpad for the next
+              generation of AI leaders and problem-solvers.
+            </p>
           </div>
-          <div className="divider divider-horizontal"></div>
-          <div className="w-full h-full flex flex-col gap-4">
-            <div
-              className="card  grid h-1/2 grow place-items-center"
-              id="section2"
-            >
-              <h1 className="font-bold text-sky-400 text-9xl">OUR VISION</h1>
-              <p className="text-center text-2xl text-center">
-                We envision a future where students from all backgrounds can
-                access the tools and knowledge to harness AI for positive
-                change. By connecting aspiring minds and providing hands-on
-                opportunities, we believe in fostering a more innovative,
-                equitable, and intelligent world.
-              </p>
-            </div>
+
+          <div className="flex-1 bg-zinc-800/50 backdrop-blur-sm rounded-xl p-8 space-y-4 text-center border border-zinc-700 transition delay-150 duration-250 ease-in-out hover hover:scale-110 hover:border-sky-400">
+            <h2 className="text-3xl font-bold text-sky-400 md:text-6xl lg:text-7xl">
+              OUR VISION
+            </h2>
+            <p className="text-base md:text-2xl lg:text-3xl">
+              We envision a future where students from all backgrounds can
+              access the tools and knowledge to harness AI for positive change.
+              By connecting aspiring minds and providing hands-on opportunities,
+              we believe in fostering a more innovative, equitable, and
+              intelligent world.
+            </p>
           </div>
         </div>
       </section>
-      <div
-        className="flex w-screen justify-center"
-        style={{ maxWidth: "100%" }}
-      >
-        <div className="w-1/2 bg-base-300 shadow-md text-center rounded-box p-5  m-10 h-full">
-          <h1 className="text-3xl font-bold">MEET THE TEAM</h1>
-          <p className="text-2xl">
+
+      {/* Team Preview Section */}
+      <div className="px-4 py-12">
+        <div className="w-full mx-auto bg-base-200 rounded-lg p-6 text-center space-y-4">
+          <h2 className="text-2xl font-bold sm:text-3xl lg:text-5xl ">
+            MEET THE TEAM
+          </h2>
+          <p className="text-lg sm:text-2xl lg:text-3xl">
             Our organization is powered by a dedicated team of student leaders.
           </p>
           <button
-            className="btn btn-primary m-5"
+            className="px-6 py-2 bg-primary text-white rounded-lg lg:text-3xl btn transition delay-150 duration-250 ease-in-out hover hover:scale-110 hover:bg-red-500"
             onClick={() => setPages("team")}
           >
             See Team
           </button>
         </div>
       </div>
-      <div className="w-screen flex flex-row justify-around items-stretch gap-8 px-10 py-12">
-        <div className="card bg-zinc-800 rounded-box shadow-lg flex flex-col justify-center items-center p-8 min-h-[180px] max-w-xs w-full">
-          <h2 className="font-bold text-sky-400 text-2xl mb-2">
+
+      {/* Initiatives Section */}
+      <div className="px-4 py-12 text-center">
+        <h1 className="text-xl sm:text-3xl 2xl:text-5xl mb-8 font-bold">
+          OUR INITIATIVES
+        </h1>
+        <h3 className="text-md sm:text-xl 2xl:text-2xl mb-20 font-thin">
+          We empower our community through a variety of engaging and impactful
+          activities.
+        </h3>
+        <div className="flex flex-col space-y-6 md:grid md:grid-cols-2 2xl:grid-cols-4 md:gap-6 md:space-y-0">
+          {/* Initiative Cards */}
+          <div className="bg-zinc-800 rounded-lg p-6 text-center space-y-4 transition delay-150 duration-250 ease-in-out hover hover:scale-105 hover:shadow-blue-500/50 hover:shadow-lg flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-20"
             >
               <path
                 strokeLinecap="round"
@@ -201,43 +200,47 @@ function MainPage({ setPages }: { setPages: (page: string) => void }) {
                 d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
               />
             </svg>
-          </h2>
-          <p className="text-center text-base text-gray-200">
-            Engaging webinars with industry experts and guest speakers on
-            cutting-edge AI topics.
-          </p>
-        </div>
-        <div className="card bg-zinc-800 rounded-box shadow-lg flex flex-col justify-center items-center p-8 min-h-[180px] max-w-xs w-full">
-          <h2 className="font-bold text-sky-400 text-2xl mb-2">
+
+            <h2 className="text-xl font-bold text-sky-400 sm:text-4xl">
+              AI Webinars
+            </h2>
+            <p className="text-sm text-gray-200 sm:text-3xl">
+              Engaging webinars with industry experts and guest speakers on
+              cutting-edge AI topics.
+            </p>
+          </div>
+          <div className="bg-zinc-800 rounded-lg p-6 text-center space-y-4 transition delay-150 duration-250 ease-in-out hover hover:scale-105 hover:shadow-blue-500/50 hover:shadow-lg  flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-20"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
               />
             </svg>
-          </h2>
-          <p className="text-center text-base text-gray-200">
-            A thriving network for high school and college students to connect,
-            collaborate, and share their passion for AI.
-          </p>
-        </div>
-        <div className="card bg-zinc-800 rounded-box shadow-lg flex flex-col justify-center items-center p-8 min-h-[180px] max-w-xs w-full">
-          <h2 className="font-bold text-sky-400 text-2xl mb-2">
+
+            <h2 className="text-xl font-bold text-sky-400 sm:text-4xl">
+              Student Community
+            </h2>
+            <p className="text-sm text-gray-200 sm:text-3xl">
+              A thriving network for high school and college students to
+              connect, collaborate, and share their passion for AI.
+            </p>
+          </div>
+          <div className="bg-zinc-800 rounded-lg p-6 text-center space-y-4 transition delay-150 duration-250 ease-in-out hover hover:scale-105 hover:shadow-blue-500/50 hover:shadow-lg  flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-20"
             >
               <path
                 strokeLinecap="round"
@@ -245,21 +248,23 @@ function MainPage({ setPages }: { setPages: (page: string) => void }) {
                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
               />
             </svg>
-          </h2>
-          <p className="text-center text-base text-gray-200">
-            Promoting the use of AI for nonprofit projects, providing resources
-            and support to make a real-world impact.
-          </p>
-        </div>
-        <div className="card bg-zinc-800 rounded-box shadow-lg flex flex-col justify-center items-center p-8 min-h-[180px] max-w-xs w-full">
-          <h2 className="font-bold text-sky-400 text-2xl mb-2">
+
+            <h2 className="text-xl font-bold text-sky-400 sm:text-4xl">
+              AI for Social Good
+            </h2>
+            <p className="text-sm text-gray-200 sm:text-3xl">
+              Promoting the use of AI for nonprofit projects, providing
+              resources and support to make a real-world impact.
+            </p>
+          </div>
+          <div className="bg-zinc-800 rounded-lg p-6 text-center space-y-4 transition delay-150 duration-250 ease-in-out hover hover:scale-105 hover:shadow-blue-500/50 hover:shadow-lg  flex flex-col items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="size-20"
             >
               <path
                 strokeLinecap="round"
@@ -267,11 +272,15 @@ function MainPage({ setPages }: { setPages: (page: string) => void }) {
                 d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
               />
             </svg>
-          </h2>
-          <p className="text-center text-base text-gray-200">
-            High-energy hackathons designed to foster creativity,
-            problem-solving, and innovation in AI.
-          </p>
+
+            <h2 className="text-xl font-bold text-sky-400 sm:text-4xl">
+              Hackathons
+            </h2>
+            <p className="text-sm text-gray-200 sm:text-3xl">
+              High-energy hackathons designed to foster creativity,
+              problem-solving, and innovation in AI.
+            </p>
+          </div>
         </div>
       </div>
     </>
@@ -280,15 +289,22 @@ function MainPage({ setPages }: { setPages: (page: string) => void }) {
 
 function TeamPage() {
   return (
-    <div className="w-screen h-screen flex justify-center content-center flex-col">
-      <div className = "w-screen text-center">
-        <h1 className = "text-5xl">MEET THE CORE TEAM</h1>
-        <p className = "mt-5">The driving force behind ThrAIve's mission. We are innovators, leaders, and students passionate about shaping the future of AI.</p>
+    <div className="min-h-screen px-4 py-16 sm:flex sm:flex-col sm:items-center sm:justify-center">
+      <div className="text-center m-8">
+        <h1 className="text-2xl sm:text-5xl font-bold mb-2">
+          MEET THE CORE TEAM
+        </h1>
+        <p className="text-sm sm:text-lg px-4">
+          The driving force behind ThrAIve's mission.
+        </p>
       </div>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-col sm:grid sm:grid-cols-2 gap-6 px-4">
         {teamMembers.map((member, idx) => (
-          <div key={idx} className="card bg-base-100 w-1/4 shadow-sm m-5">
-            <figure>
+          <div
+            key={idx}
+            className="bg-base-200 rounded-lg shadow-sm p-4 sm:p-6 flex items-center border border-base-300"
+          >
+            <figure className="mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -302,10 +318,12 @@ function TeamPage() {
                 />
               </svg>
             </figure>
-            <div className="card-body text-center">
-              <h2 className="text-2xl font-bold">{member.name}</h2>
-              <p className="text-sky-500 font-semibold mb-2">{member.role}</p>
-              <p className="text-base">{member.bio}</p>
+            <div className="text-center">
+              <h2 className="text-xl font-bold lg:text-4xl">{member.name}</h2>
+              <p className="text-sky-500 text-sm font-semibold mb-2 lg:text-2xl">
+                {member.role}
+              </p>
+              <p className="text-sm lg:text-2xl">{member.bio}</p>
             </div>
           </div>
         ))}
@@ -313,104 +331,175 @@ function TeamPage() {
     </div>
   );
 }
-
-function ProjectPage()
-{
-  return(
-      <div className=" py-20 md:py-28">
-        <div className="container mx-auto px-6 flex flex-col items-center">
-            {/* Projects Section */}
-            <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-white">Our Projects</h1>
-                <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-                    Applying AI to solve real-world problems and support our community partners.
-                </p>
-            </div>
-            <div className="grid md:grid-cols-1 gap-10 mb-20 w-2/3">
-                {projects.map((project, index) => (
-                    <div key={index} className="bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 flex flex-col md:flex-row items-center">
-                        <div className="p-4 bg-gray-700 flex-shrink-0 self-stretch flex items-center">
-                            
-                        </div>
-                        <div className="p-8">
-                            <div className="flex items-center mb-2">
-                                <h3 className="text-3xl font-bold text-white mr-4">{project.title}</h3>
-                                <span className={`px-3 py-1 text-sm font-semibold rounded-full ${project.status === 'Completed' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}`}>{project.status}</span>
-                            </div>
-                            <p className="text-gray-300 mb-6">{project.description}</p>
-                            <div className="flex flex-wrap gap-2">
-                                {project.tech.map((tech, i) => (
-                                    <span key={i} className="bg-gray-700 text-blue-300 text-sm font-medium px-3 py-1 rounded-full">{tech}</span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Past Events Section */}
-            <div className="text-center my-16">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white">Past Events & Webinars</h2>
-                <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-                    Sharing knowledge and fostering discussion within our community.
-                </p>
-            </div>
-            <div className="max-w-4xl mx-auto">
-                {pastEvents.map((event, index) => (
-                    <div key={index} className="bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700">
-                        <p className="text-sm text-blue-400 font-semibold mb-2">{event.date}</p>
-                        <h3 className="text-3xl font-bold text-white mb-3">{event.title}</h3>
-                        <p className="text-gray-300 mb-6">{event.description}</p>
-                        <a href={event.recordingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center font-bold text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors">
-                           
-                            Watch Recording
-                        </a>
-                    </div>
-                ))}
-            </div>
+function ProjectPage() {
+  return (
+    <div className=" py-20 md:py-28">
+      <div className="container mx-auto px-6 flex flex-col items-center">
+        {/* Projects Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-2xl sm:text-4xl font-bold mb-2">Our Projects</h1>
+          <p className="text-sm sm:text-base text-gray-400 lg:text-2xl">
+            Applying AI to solve real-world problems
+          </p>
         </div>
+        <div className="flex flex-col md:grid md:grid-cols-2  gap-6">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 rounded-lg p-4 sm:p-6 border border-gray-700"
+            >
+              <div className="mb-4">
+                <h3 className="text-xl md:text-3xl lg:text-5xl font-bold text-white mb-1">
+                  {project.title}
+                </h3>
+                <span
+                  className={
+                    "inline-block px-2 py-1 text-xs rounded-full lg:text-xl " +
+                    (project.status === "Completed"
+                      ? "bg-green-600 text-green-100"
+                      : "bg-yellow-600 text-yellow-100")
+                  }
+                >
+                  {project.status}
+                </span>
+              </div>
+              <p className="text-sm sm:text-lg text-gray-300 mb-4 lg:text-2xl">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 ">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-gray-700 px-2 py-1 rounded-full lg:text-xl"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Past Events Section */}
+        <div className="text-center my-16">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-white">
+            Past Events & Webinars
+          </h2>
+          <p className="text-lg text-white-500 mt-4 max-w-3xl mx-auto lg:text-2xl font-bold">
+            Sharing knowledge and fostering discussion within our community.
+          </p>
+        </div>
+        <div className="max-w-4xl mx-auto">
+          {pastEvents.map((event, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700"
+            >
+              <p className="text-sm text-blue-400 font-semibold mb-2 lg:text-2xl">
+                {event.date}
+              </p>
+              <h3 className="text-3xl font-bold text-white mb-3 lg:text-4xl">
+                {event.title}
+              </h3>
+              <p className="text-gray-300 mb-6 lg:text-2xl">
+                {event.description}
+              </p>
+              <a
+                href={event.recordingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center font-bold text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors"
+              >
+                Watch Recording
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-function ContactPage()
-{
-  return(
-      <section id="contact" className={`py-20 md:py-32 `}>
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white">Get Involved</h2>
-        <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-          Whether you're a student, a non-profit, or a professional, there's a place for you at ThrAIve.
-        </p>
+function ContactPage() {
+  return (
+    <section id="contact" className={`py-20 md:py-32 `}>
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+            Get Involved
+          </h2>
+          <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto lg:text-3xl">
+            Whether you're a student, a non-profit, or a professional, there's a
+            place for you at ThrAIve.
+          </p>
+        </div>
+        <div className="max-w-lg lg:max-w-xl mx-auto bg-gray-800 p-4 md:p-8 lg:p-10 rounded-2xl shadow-2xl">
+          <form action="#" method="POST">
+            <div className="mb-4">
+              <label
+                htmlFor="name"
+                className="block text-gray-300 font-bold mb-2 md:text-xl lg:text-2xl"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500 sm:text-lg lg:text-2xl"
+                placeholder="Your Name"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-gray-300 font-bold mb-2 md:text-xl lg:text-2xl"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500 sm:text-lg lg:text-2xl"
+                placeholder="your.email@example.com"
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="message"
+                className="block text-gray-300 font-bold mb-2"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500 lg:text-2xl"
+                placeholder="How would you like to get involved?"
+              ></textarea>
+            </div>
+            <div className="text-center">
+              <button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="max-w-lg mx-auto bg-gray-800 p-8 rounded-2xl shadow-2xl">
-        <form action="#" method="POST">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-300 font-bold mb-2">Name</label>
-            <input type="text" id="name" name="name" className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500" placeholder="Your Name" />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-300 font-bold mb-2">Email</label>
-            <input type="email" id="email" name="email" className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500" placeholder="your.email@example.com" />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="message" className="block text-gray-300 font-bold mb-2">Message</label>
-            <textarea id="message" name="message" rows= {4} className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-blue-500" placeholder="How would you like to get involved?"></textarea>
-          </div>
-          <div className="text-center">
-            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300">
-              Send Message
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-  )
+    </section>
+  );
 }
 export default function App() {
   const [pages, setPage] = useState("main");
+  useEffect(() => {
+    console.log(pages)
+    scrollTo(0, 0);
+  }, [pages]);
   const renderPage = () => {
     switch (pages) {
       //setCurrentPage={setCurrentPage}
@@ -419,9 +508,9 @@ export default function App() {
       case "team":
         return <TeamPage />;
       case "projects":
-        return <ProjectPage/>;
+        return <ProjectPage />;
       case "contact":
-        return <ContactPage/>;
+        return <ContactPage />;
       // case 'team':
       //   return <TeamPage />;
       // case 'projects':
@@ -434,28 +523,99 @@ export default function App() {
   };
   return (
     <main>
+      {/* Navbar */}
       <div
-        className="navbar bg-base-100 shadow-sm stick fixed top-0  z-50"
-        style={{ maxWidth: "100%" }}
+        className="navbar  shadow-sm stick fixed top-0 z-50 w-screen"
+        id="navbar"
       >
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">ThraiveAI</a>
+          <a className=" btn-ghost text-xl md:text-3xl lg:text-4xl">
+            ThraiveAI
+          </a>
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <button className = "btn" onClick = {()=>setPage("main")}>Home</button>
-            </li>
-            <li>
-              <button className = "btn" onClick = {()=>setPage("projects")}>Projects</button>
-            </li>
-            <li>
-              <button className = "btn" onClick = {()=>setPage("contact")}>Contact</button>
-            </li>
+          <ul className="menu menu-horizontal ">
+            {window.screen.width < 500 ? (
+              <li>
+                <details>
+                  <summary className = "btn btn-ghost">
+                    Menu
+                  </summary>
+                  <ul className="bg-base-100 rounded-t-none p-2">
+                    <li>
+                      <button className={"btn"+(pages==="main"?"text-sky-300":"")} onClick={() => setPage("main")}>
+                        Home
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                       className={"btn"+ (pages==="projects"?"text-sky-300":"")}
+                        onClick={() => setPage("projects")}
+                      >
+                        Projects
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        className="btn"
+                        onClick={() => setPage("contact")}
+                      >
+                        Contact
+                      </button>
+                    </li>
+                    <li>
+                      <button className="btn" onClick={() => setPage("team")}>
+                        Team
+                      </button>
+                    </li>{" "}
+                  </ul>
+                </details>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <button  className={"btn"} onClick={() => setPage("main")}>
+                    <p className = {pages==="main"?"text-sky-300":""}>
+                      Home
+                    </p>
+                  </button>
+                </li>
+                <li>
+                  <button className="btn" onClick={() => setPage("projects")}>
+                    Projects
+                  </button>
+                </li>
+                <li>
+                  <button className="btn" onClick={() => setPage("contact")}>
+                    Contact
+                  </button>
+                </li>
+                <li>
+                  <button className="btn" onClick={() => setPage("team")}>
+                    Team
+                  </button>
+                </li>{" "}
+              </>
+            )}
           </ul>
         </div>
       </div>
       {renderPage()}
+
+      <footer className="footer sm:footer-horizontal bg-base-300 text-neutral-content p-10">
+        <aside>
+          <h6 className="footer-title">ThrAIve</h6>
+          <p>
+            Don't copy our crap, ask for permission, we will probably say yes.
+          </p>
+        </aside>
+        <nav>
+          <h6 className="footer-title">Social</h6>
+          <div className="grid grid-flow-col gap-4">
+            Don't have any social media yet
+          </div>
+        </nav>
+      </footer>
     </main>
   );
 }
