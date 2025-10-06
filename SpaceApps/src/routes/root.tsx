@@ -15,7 +15,7 @@ export default function Root() {
         id={styles.mainBox}
       >
         <img
-            src={"/Screenshoot6.png"}
+            src={"https://media.discordapp.net/attachments/1424095140129145002/1424559497740947569/Made_with_ChatGpt-removebg-preview.png?ex=68e463eb&is=68e3126b&hm=3dff2b2bbd9e9c3d1fbdfb73244d53150b1d3bbf6e0a1a99bce1023a351e7bc2&=&format=webp&quality=lossless"}
             alt="EXOQUEST LOGO"
             style={{
               maxWidth: "30%",
